@@ -30,6 +30,7 @@
         }
 
         // Tipo di prodotto
+        
         abstract class ItemType {
             protected $typeName;
 
@@ -53,6 +54,78 @@
         class KennelType extends ItemType {
             protected $typeName = "Cuccia";
         }
+
+
+
+        // Classe per i prodotti
+
+        class Product {
+            protected $title;
+            protected $price;
+            protected $imagePath;
+            protected $category;
+            protected $itemType;
+            protected static $productCount = 0;
+
+            public function __construct($title, $price, $imagePath, Category $category, ItemType $itemType) {
+                $this->title = $title;
+                $this->price = $price;
+                $this->imagePath = $imagePath;
+                $this->category = $category;
+                $this->itemType = $itemType;
+                self::$productCount++;
+            }
+
+            public function getTitle() {
+                return $this->title;
+            }
+
+            public function getPrice() {
+                return $this->price;
+            }
+
+            public function getImagePath() {
+                return $this->imagePath;
+            }
+
+            public function getCategory() {
+                return $this->category;
+            }
+
+            public function getItemType() {
+                return $this->itemType;
+            }
+
+            public static function getProductCount() {
+                return self::$productCount;
+            }
+}
+
+            // Classi derivate dei prodotti
+            
+            class AnimalProduct extends Product {
+                public function __construct($title, $price, $imagePath, Category $category) {
+                    parent::__construct($title, $price, $imagePath, $category, new ProductType());
+                }
+            }
+
+            class FoodProduct extends Product {
+                public function __construct($title, $price, $imagePath, Category $category) {
+                    parent::__construct($title, $price, $imagePath, $category, new FoodType());
+                }
+            }
+
+            class ToyProduct extends Product {
+                public function __construct($title, $price, $imagePath, Category $category) {
+                    parent::__construct($title, $price, $imagePath, $category, new ToyType());
+                }
+            }
+
+            class KennelProduct extends Product {
+                public function __construct($title, $price, $imagePath, Category $category) {
+                    parent::__construct($title, $price, $imagePath, $category, new KennelType());
+                }
+            }
 
     ?>
 
