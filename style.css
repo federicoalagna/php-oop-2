@@ -1,0 +1,19 @@
+body {
+}
+
+.category-icon {
+  font-size: 24px;
+  margin-right: 5px;
+}
+.card-body {
+  text-align: center;
+}
+
+.product-card {
+  margin: 20px;
+}
+.product-card img {
+  width: 100%;
+  max-height: 370px;
+  object-fit: cover;
+}
